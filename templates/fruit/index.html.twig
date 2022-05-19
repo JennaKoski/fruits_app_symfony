@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FruitController!{% endblock %}
+
+{% block body %}
+{# <style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style> #}
+
+<div class="container">
+<form action="{{path('create_fruit')}}" method="post">
+    <input type="text" name="fruitname" id="" placeholder="Enter a fruit">
+    <input type="text" name="color" id="" placeholder="Enter the color">
+    <input type="text" name="taste" id="" placeholder="How does it taste?">
+    <button type="submit" class="btn">Add fruit</button>
+</form>
+
+    <h1>🍇🍌🍏🍑 Fruit App 🍊🍐🍉🥝</h1>
+<ul>
+{% for fruit in fruits %}
+<form action="{{path('update_fruit', {'id': fruit.id})}}" method="patch">
+    <input class="update_inputs" type="text" name="fruitname" value="{{fruit.fruitname}}">
+    <input class="update_inputs" type="text" name="color" value="{{fruit.color}}">
+    <input class="update_inputs" type="text" name="taste" value="{{fruit.taste}}">
+    <button type="submit" class="btn">Update</button>
+    <a class="btn" href="{{path('delete_fruit', {'id': fruit.id})}}">Delete</a>
+</form>
+
+    {# <li>{{ fruit.fruitname }} - {{ fruit.color }} - {{ fruit.taste }}</li> #}
+    
+    
+
+{% endfor %}
+</ul>
+</div>
+{% endblock %}
